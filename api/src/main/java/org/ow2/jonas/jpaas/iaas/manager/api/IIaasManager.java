@@ -28,7 +28,6 @@ package org.ow2.jonas.jpaas.iaas.manager.api;
 
 import javax.ejb.Remote;
 import java.util.List;
-import java.util.concurrent.Future;
 
 /**
  * Interface for the IaasManager.

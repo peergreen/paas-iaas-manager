@@ -26,14 +26,14 @@
 package org.ow2.jonas.jpaas.iaas.manager.api;
 
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 import java.util.List;
 
 /**
  * Interface for the IaasManager.
  * @author David Richard
  */
-@Remote
+@Local
 public interface IIaasManager {
 
     /**

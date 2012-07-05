@@ -30,16 +30,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.ow2.jonas.jpaas.iaas-manager</groupId>
-    <artifactId>iaas-manager</artifactId>
+    <groupId>org.ow2.jonas.jpaas.iaas-manager.providers</groupId>
+    <artifactId>iaas-manager-providers</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>iaas-manager-core</artifactId>
+  <artifactId>iaas-vmm</artifactId>
   <packaging>bundle</packaging>
-  <name>jPaaS :: IaaS Manager :: Core</name>
+  <name>JPaaS :: IaaS Manager :: Providers :: IaaS VMM</name>
 
-  <description>jPaaS :: IaaS Manager :: Core</description>
+  <description>JPaaS : IaaS Manager : Providers : IaaS VMM</description>
   <url>http://wiki.jasmine.ow2.org/</url>
   <developers/>
   <licenses>
@@ -56,36 +56,6 @@
       <version>${ow2-bundles.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.ow2.spec.ee</groupId>
-      <artifactId>ow2-ejb-3.1-spec</artifactId>
-      <version>${ow2-spec.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.spec.ee</groupId>
-      <artifactId>ow2-annotation-1.1-spec</artifactId>
-      <version>${ow2-spec.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.jonas.jpaas.catalog</groupId>
-      <artifactId>jpaas-catalog</artifactId>
-      <version>${catalog.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.jonas.jpaas.system-representation</groupId>
-      <artifactId>system-representation-vo</artifactId>
-      <version>${sr.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.jonas.jpaas.system-representation</groupId>
-      <artifactId>system-representation-ejb</artifactId>
-      <version>${sr.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.easybeans.osgi</groupId>
-      <artifactId>easybeans-osgi-annotations</artifactId>
-      <version>${easybeans-osgi-version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.ipojo.annotations</artifactId>
       <version>${ipojo.version}</version>
@@ -94,6 +64,17 @@
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.ipojo</artifactId>
       <version>${ipojo.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.jonas.jpaas.iaas-manager</groupId>
+      <artifactId>iaas-manager-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.sirocco.vmm</groupId>
+      <artifactId>sirocco-vmm-api</artifactId>
+      <version>${vmm.version}</version>
     </dependency>
   </dependencies>
 
@@ -123,6 +104,7 @@
           </instructions>
         </configuration>
       </plugin>
+
 
       <plugin>
         <groupId>org.apache.felix</groupId>

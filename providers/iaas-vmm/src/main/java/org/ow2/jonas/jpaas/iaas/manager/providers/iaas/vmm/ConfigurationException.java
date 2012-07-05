@@ -23,37 +23,20 @@
  * --------------------------------------------------------------------------
  */
 
-package org.ow2.jonas.jpaas.iaas.manager.api;
+package org.ow2.jonas.jpaas.iaas.manager.providers.iaas.vmm;
 
-import java.util.List;
+import org.ow2.jonas.jpaas.iaas.manager.api.IaasException;
 
-/**
- * Interface for the IaasManager.
- * @author David Richard
- */
-public interface IIaasManager {
+public class ConfigurationException extends IaasException {
 
-    /**
-     * Create a Compute
-     *
-     * @param computeName the name of the Compute
-     * @param iaasConfigurationName the name of the IaaS Configuration
-     */
-    public void createCompute(String computeName, String iaasConfigurationName) throws IaasManagerException;
 
-    /**
-     * remove a Compute
-     *
-     * @param computeName the name of the Compute
-     */
-    public void removeCompute(String computeName) throws IaasManagerException;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * Get the port range of a Compute
-     *
-     * @param computeName the name of the Compute
-     * @return a list of port
-     */
-    public List<Integer> getPortRange(String computeName, int size);
+    public ConfigurationException(String msg) {
+        super(msg);
+    }
 
+    public ConfigurationException(String msg, Throwable t) {
+        super(msg,t);
+    }
 }

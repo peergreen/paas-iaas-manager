@@ -25,35 +25,15 @@
 
 package org.ow2.jonas.jpaas.iaas.manager.api;
 
-import java.util.List;
-
 /**
- * Interface for the IaasManager.
- * @author David Richard
+ * The different types of Operation.
+ *
  */
-public interface IIaasManager {
-
-    /**
-     * Create a Compute
-     *
-     * @param computeName the name of the Compute
-     * @param iaasConfigurationName the name of the IaaS Configuration
-     */
-    public void createCompute(String computeName, String iaasConfigurationName) throws IaasManagerException;
-
-    /**
-     * remove a Compute
-     *
-     * @param computeName the name of the Compute
-     */
-    public void removeCompute(String computeName) throws IaasManagerException;
-
-    /**
-     * Get the port range of a Compute
-     *
-     * @param computeName the name of the Compute
-     * @return a list of port
-     */
-    public List<Integer> getPortRange(String computeName, int size);
-
+public enum OperationType {
+    NONE,  // no operation
+    PROVISIONING_NEW_NODE, // provisioning is ok, ready to start
+    START_NEW_NODE, // start it
+    STOP_NODE, // stop node
+    DELETE_NODE, // remove node
+    GET_INFO, // get info about the starting node
 }

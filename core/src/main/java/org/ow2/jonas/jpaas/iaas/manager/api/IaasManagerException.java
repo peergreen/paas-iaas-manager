@@ -25,35 +25,17 @@
 
 package org.ow2.jonas.jpaas.iaas.manager.api;
 
-import java.util.List;
-
 /**
- * Interface for the IaasManager.
- * @author David Richard
+ * IaasManager Exception
  */
-public interface IIaasManager {
+public class IaasManagerException extends Exception {
 
-    /**
-     * Create a Compute
-     *
-     * @param computeName the name of the Compute
-     * @param iaasConfigurationName the name of the IaaS Configuration
-     */
-    public void createCompute(String computeName, String iaasConfigurationName) throws IaasManagerException;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * remove a Compute
-     *
-     * @param computeName the name of the Compute
-     */
-    public void removeCompute(String computeName) throws IaasManagerException;
-
-    /**
-     * Get the port range of a Compute
-     *
-     * @param computeName the name of the Compute
-     * @return a list of port
-     */
-    public List<Integer> getPortRange(String computeName, int size);
-
+    public IaasManagerException(String msg) {
+        super(msg);
+    }
+    public IaasManagerException(String msg, Throwable t) {
+        super(msg,t);
+    }
 }

@@ -1,0 +1,4 @@
+DynamicImport-Package *
+
+Private-Package org.ow2.jonas.jpaas.iaas.manager.providers.iaas.vmm
+Embed-Dependency sirocco-vmm-api

@@ -25,35 +25,53 @@
 
 package org.ow2.jonas.jpaas.iaas.manager.api;
 
-import java.util.List;
-
 /**
- * Interface for the IaasManager.
- * @author David Richard
+ * Iaas Service interface
  */
-public interface IIaasManager {
+public interface IaasService {
 
     /**
-     * Create a Compute
+     * Create a node
      *
-     * @param computeName the name of the Compute
-     * @param iaasConfigurationName the name of the IaaS Configuration
+     * @param nodeHandle the node to create
+     * @return the node created
+     * @throws IaasException
      */
-    public void createCompute(String computeName, String iaasConfigurationName) throws IaasManagerException;
+    NodeHandle createNode(NodeHandle nodeHandle) throws IaasException;
 
     /**
-     * remove a Compute
+     * Start a node
      *
-     * @param computeName the name of the Compute
+     * @param nodeHandle the node to start
+     * @return the node started
+     * @throws IaasException
      */
-    public void removeCompute(String computeName) throws IaasManagerException;
+    NodeHandle startNode(NodeHandle nodeHandle) throws IaasException;
 
     /**
-     * Get the port range of a Compute
+     * Stop a node
      *
-     * @param computeName the name of the Compute
-     * @return a list of port
+     * @param nodeHandle the node to stop
+     * @return the node stoped
+     * @throws IaasException
      */
-    public List<Integer> getPortRange(String computeName, int size);
+    NodeHandle stopNode(NodeHandle nodeHandle) throws IaasException;
 
+    /**
+     * Delete a node
+     *
+     * @param nodeHandle the node to delete
+     * @return the node deleted
+     * @throws IaasException
+     */
+    NodeHandle deleteNode(NodeHandle nodeHandle) throws IaasException;
+
+    /**
+     * Get info on a node
+     *
+     * @param nodeHandle the node
+     * @return the node
+     * @throws IaasException
+     */
+    NodeHandle getInfo(NodeHandle nodeHandle) throws IaasException;
 }

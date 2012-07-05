@@ -25,35 +25,20 @@
 
 package org.ow2.jonas.jpaas.iaas.manager.api;
 
-import java.util.List;
-
 /**
- * Interface for the IaasManager.
- * @author David Richard
+ * The interface describing the ServiceInvoker to interact with a IaasService.
  */
-public interface IIaasManager {
+public interface ServiceInvoker {
 
     /**
-     * Create a Compute
+     * Invoke a new operation
      *
-     * @param computeName the name of the Compute
-     * @param iaasConfigurationName the name of the IaaS Configuration
+     * @param operationType Type of the operation
+     * @param nodeName Name of the node
+     * @param nodeHandle the Node
+     * @return the output NodeHandle
+     * @throws IaasManagerException
      */
-    public void createCompute(String computeName, String iaasConfigurationName) throws IaasManagerException;
-
-    /**
-     * remove a Compute
-     *
-     * @param computeName the name of the Compute
-     */
-    public void removeCompute(String computeName) throws IaasManagerException;
-
-    /**
-     * Get the port range of a Compute
-     *
-     * @param computeName the name of the Compute
-     * @return a list of port
-     */
-    public List<Integer> getPortRange(String computeName, int size);
-
+    public NodeHandle doOperation(OperationType operationType, String nodeName, NodeHandle nodeHandle)
+            throws IaasManagerException;
 }

@@ -28,6 +28,7 @@ package org.ow2.jonas.jpaas.iaas.manager.bean;
 
 import org.ow2.easybeans.osgi.annotation.OSGiResource;
 import org.ow2.jonas.jpaas.catalog.api.IIaasCatalogFacade;
+import org.ow2.jonas.jpaas.catalog.api.IaasCatalogException;
 import org.ow2.jonas.jpaas.catalog.api.IaasConfiguration;
 import org.ow2.jonas.jpaas.iaas.manager.api.IIaasManager;
 import org.ow2.jonas.jpaas.iaas.manager.api.IaasManagerException;
@@ -96,6 +97,9 @@ public class IaasManagerBean implements IIaasManager {
             iSrIaasComputeFacade.createIaasCompute(iaasComputeVO);
         } catch (IaasManagerException e) {
             throw new IaasManagerException("Cannot create the node " + nodeHandle.getName(), e);
+        } catch (IaasCatalogException e) {
+            throw new IaasManagerException("Error to find the IaaS Configuration named " +
+                                iaasConfigurationName + ".", e);
         }
     }
 

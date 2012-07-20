@@ -173,7 +173,7 @@ public class ServiceInvokerImpl implements ServiceInvoker {
         } catch (IaasException e) {
             throw new IaasManagerException("Error during execution Service <"
                     + nodeHandle.getIaasName() + " for node <"
-                    + nodeName + ">", e);
+                    + nodeName + ">", e.getCause());
 
         }
         return outNodeHandle;

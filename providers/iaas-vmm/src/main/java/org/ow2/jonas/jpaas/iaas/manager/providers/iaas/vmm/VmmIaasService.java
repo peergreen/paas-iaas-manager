@@ -130,16 +130,15 @@ public class VmmIaasService implements IaasService {
             vm = provisionAndStartNewVM(nodeHandle.getName());
         } catch (InvalidVMConfigException e) {
             e.printStackTrace();
-            throw new IaasException(e.getMessage(), e);
+            throw new IaasException(e.getMessage(), e.getCause());
         } catch (VMMException e) {
             e.printStackTrace();
-            throw new IaasException(e.getMessage(), e);
+            throw new IaasException(e.getMessage(), e.getCause());
         }
         try {
             outNodeHandle.setIpAddress(vm.getGuestIpAddress());
         } catch (VMMException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new IaasException("Error during VM creation.", e.getCause());
         }
         return outNodeHandle;
     }
@@ -150,7 +149,7 @@ public class VmmIaasService implements IaasService {
         try {
             removeVM(nodeHandle.getName());
         } catch (VMMException e) {
-            throw new IaasException(e.getMessage(), e);
+            throw new IaasException(e.getMessage(), e.getCause());
         }
         outNodeHandle.setIpAddress(null);
         return outNodeHandle;
@@ -165,7 +164,7 @@ public class VmmIaasService implements IaasService {
         try {
             stopVM(nodeHandle.getName());
         } catch (VMMException e) {
-            throw new IaasException(e.getMessage(), e);
+            throw new IaasException(e.getMessage(), e.getCause());
         }
         return nodeHandle;
     }
@@ -178,7 +177,7 @@ public class VmmIaasService implements IaasService {
             outNodeHandle.setIpAddress(vm.getGuestIpAddress());
             return outNodeHandle;
         } catch (VMMException e) {
-            throw new IaasException(e.getMessage(), e);
+            throw new IaasException(e.getMessage(), e.getCause());
         }
 
     }
@@ -281,7 +280,7 @@ public class VmmIaasService implements IaasService {
             lastCreationTime = System.currentTimeMillis();
         } catch (Exception e) {
             e.printStackTrace();
-            logger.info("Exception during provision or start-up: " + e);
+            throw new VMMException("Exception during provision or start-up: " + e.getCause());
         }
         return vm;
 
@@ -304,11 +303,11 @@ public class VmmIaasService implements IaasService {
             names = mbsc.queryNames(new ObjectName(
                     "org.ow2.sirocco.vmm.api:type=ServerPool,name=" + vmmConf.getPoolName()), null);
         } catch (IOException e) {
-            throw new VMMException(e);
+            throw new VMMException(e.getCause());
         } catch (MalformedObjectNameException e) {
-            throw new VMMException(e);
+            throw new VMMException(e.getCause());
         } catch (NullPointerException e) {
-            throw new VMMException(e);
+            throw new VMMException(e.getCause());
         }
 
         Iterator<ObjectName> it = names.iterator();
@@ -398,11 +397,11 @@ public class VmmIaasService implements IaasService {
             names = mbsc.queryNames(new ObjectName(
                     "org.ow2.sirocco.vmm.api:type=Host,*"), null);
         } catch (IOException e) {
-            throw new VMMException(e);
+            throw new VMMException(e.getCause());
         } catch (MalformedObjectNameException e) {
-            throw new VMMException(e);
+            throw new VMMException(e.getCause());
         } catch (NullPointerException e) {
-            throw new VMMException(e);
+            throw new VMMException(e.getCause());
         }
 
         Iterator<ObjectName> it = names.iterator();

@@ -96,10 +96,10 @@ public class IaasManagerBean implements IIaasManager {
             iaasComputeVO.setCapabilities(iaasConfiguration.getCapabilities());
             iSrIaasComputeFacade.createIaasCompute(iaasComputeVO);
         } catch (IaasManagerException e) {
-            throw new IaasManagerException("Cannot create the node " + nodeHandle.getName(), e);
+            throw new IaasManagerException("Cannot create the node " + nodeHandle.getName(), e.getCause());
         } catch (IaasCatalogException e) {
             throw new IaasManagerException("Error to find the IaaS Configuration named " +
-                                iaasConfigurationName + ".", e);
+                                iaasConfigurationName + ".", e.getCause());
         }
     }
 
@@ -130,7 +130,7 @@ public class IaasManagerBean implements IIaasManager {
                 serviceInvoker.doOperation(OperationType.DELETE_NODE, nodeHandle.getName(), nodeHandle);
                 iSrIaasComputeFacade.deleteIaasCompute(computeId);
             } catch (IaasManagerException e) {
-                throw new IaasManagerException("Cannot delete the node " + nodeHandle.getName(), e);
+                throw new IaasManagerException("Cannot delete the node " + nodeHandle.getName(), e.getCause());
             }
         }
     }

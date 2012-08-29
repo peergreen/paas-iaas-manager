@@ -89,7 +89,7 @@ public class IaasManagerBean implements IIaasManager {
 
             IaasComputeVO iaasComputeVO = new IaasComputeVO() ;
             iaasComputeVO.setName(computeName);
-            iaasComputeVO.setState("CREATED");
+            iaasComputeVO.setState("RUNNING");
             iaasComputeVO.setIpAddress(nodeHandle.getIpAddress());
             iaasComputeVO.setHostname(nodeHandle.getName());
             iaasComputeVO.setConf(iaasConfigurationName);

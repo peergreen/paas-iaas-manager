@@ -43,6 +43,8 @@ import org.ow2.util.log.LogFactory;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import java.util.List;
 
 
@@ -78,6 +80,7 @@ public class IaasManagerBean implements IIaasManager {
      * @param iaasConfigurationName the name of the IaaS Configuration
      */
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void createCompute(String computeName, String iaasConfigurationName) throws IaasManagerException {
         NodeHandle nodeHandle = new NodeHandle();
         nodeHandle.setName(computeName);
@@ -94,7 +97,8 @@ public class IaasManagerBean implements IIaasManager {
             iaasComputeVO.setHostname(nodeHandle.getName());
             iaasComputeVO.setConf(iaasConfigurationName);
             iaasComputeVO.setCapabilities(iaasConfiguration.getCapabilities());
-            iSrIaasComputeFacade.createIaasCompute(iaasComputeVO);
+            iaasComputeVO = iSrIaasComputeFacade.createIaasCompute(iaasComputeVO);
+            logger.debug("End of Create Compute :" + iaasComputeVO.getIpAddress());
         } catch (IaasManagerException e) {
             throw new IaasManagerException("Cannot create the node " + nodeHandle.getName(), e.getCause());
         } catch (IaasCatalogException e) {
@@ -109,6 +113,7 @@ public class IaasManagerBean implements IIaasManager {
      * @param computeName the name of the Compute
      */
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void removeCompute(String computeName) throws IaasManagerException {
         List<IaasComputeVO> iaasComputeList = iSrIaasComputeFacade.findIaasComputes();
         String computeId = null;

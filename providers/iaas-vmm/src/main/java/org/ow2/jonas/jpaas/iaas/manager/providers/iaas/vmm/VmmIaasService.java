@@ -275,6 +275,15 @@ public class VmmIaasService implements IaasService {
             vm = host.createVirtualMachine(vmConfigSpec, customizationSpec, true, true);
             logger.info(vm.getNameLabel() + " provisioned");
             //vm.start();
+            String vmIP = vm.getGuestIpAddress();
+            int maxRetry = 3;
+            while (vmIP == null && maxRetry != 0) {
+                maxRetry--;
+                vmIP = vm.getGuestIpAddress();
+            }
+            if (maxRetry==0) {
+                throw new VMMException("Cannot get the IP address of the created VM");
+            }
             logger.info(vm.getNameLabel() + " started with id address : "
                 + vm.getGuestIpAddress());
             lastCreationTime = System.currentTimeMillis();

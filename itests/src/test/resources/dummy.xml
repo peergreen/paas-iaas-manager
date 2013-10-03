@@ -1,0 +1,8 @@
+<!--
+    IaaS layers definition
+    -->
+<iaas-defs>
+  <iaas type="DUMMYIAAS" name="dummy1" auto-start="false">
+  </iaas>
+
+</iaas-defs>

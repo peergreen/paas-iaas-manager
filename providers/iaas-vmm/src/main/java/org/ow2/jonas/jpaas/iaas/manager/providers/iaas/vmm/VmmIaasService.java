@@ -41,9 +41,9 @@ import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
-import org.ow2.jonas.jpaas.iaas.manager.api.IaasException;
-import org.ow2.jonas.jpaas.iaas.manager.api.IaasService;
-import org.ow2.jonas.jpaas.iaas.manager.api.NodeHandle;
+import org.ow2.jonas.jpaas.iaas.manager.providers.iaas.api.NodeHandle;
+import org.ow2.jonas.jpaas.iaas.manager.providers.iaas.api.IaasException;
+import org.ow2.jonas.jpaas.iaas.manager.providers.iaas.api.IaasService;
 import org.w3c.dom.Element;
 import org.ow2.sirocco.vmm.api.CustomizationSpec;
 import org.ow2.sirocco.vmm.api.DiskOperation;
@@ -100,7 +100,7 @@ public class VmmIaasService implements IaasService {
         logger.info("Load specific configuration to the stack");
         try {
             vmmConf.load(conf);
-        } catch (ConfigurationException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

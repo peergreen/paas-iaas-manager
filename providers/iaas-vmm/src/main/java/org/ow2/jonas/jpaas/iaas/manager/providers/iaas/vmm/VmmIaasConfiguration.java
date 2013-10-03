@@ -21,12 +21,9 @@ package org.ow2.jonas.jpaas.iaas.manager.providers.iaas.vmm;
 
 
 import org.w3c.dom.Element;
+import org.ow2.jonas.jpaas.iaas.manager.providers.iaas.api.IaasException;
 
-/**
- * Describes a Vmm configuration
- *
- * @author pelletib
- */
+
 public class VmmIaasConfiguration {
 
     /**

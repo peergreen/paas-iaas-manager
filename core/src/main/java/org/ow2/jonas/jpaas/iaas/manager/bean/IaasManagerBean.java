@@ -26,9 +26,9 @@ import org.ow2.jonas.jpaas.catalog.api.IaasCatalogException;
 import org.ow2.jonas.jpaas.catalog.api.IaasConfiguration;
 import org.ow2.jonas.jpaas.iaas.manager.api.IIaasManager;
 import org.ow2.jonas.jpaas.iaas.manager.api.IaasManagerException;
-import org.ow2.jonas.jpaas.iaas.manager.api.NodeHandle;
-import org.ow2.jonas.jpaas.iaas.manager.api.OperationType;
-import org.ow2.jonas.jpaas.iaas.manager.api.ServiceInvoker;
+import org.ow2.jonas.jpaas.iaas.manager.osgi.api.OperationType;
+import org.ow2.jonas.jpaas.iaas.manager.osgi.api.ServiceInvoker;
+import org.ow2.jonas.jpaas.iaas.manager.providers.iaas.api.NodeHandle;
 import org.ow2.jonas.jpaas.sr.facade.api.ISrIaasComputeFacade;
 import org.ow2.jonas.jpaas.sr.facade.vo.IaasComputeVO;
 import org.ow2.util.log.Log;
@@ -76,10 +76,16 @@ public class IaasManagerBean implements IIaasManager {
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void createCompute(String computeName, String iaasConfigurationName) throws IaasManagerException {
+
+        logger.info("computeName=" + computeName + ", iaasConfigurationName=" + iaasConfigurationName);
+
+
         NodeHandle nodeHandle = new NodeHandle();
         nodeHandle.setName(computeName);
         nodeHandle.setIaasName(iaasConfigurationName);
         try {
+            logger.info("serviceInvoker=" + serviceInvoker + ", class=" + serviceInvoker.getClass());
+
             nodeHandle = serviceInvoker.doOperation(OperationType.PROVISIONING_NEW_NODE, nodeHandle.getName(), nodeHandle);
 
             IaasConfiguration iaasConfiguration = iIaasCatalogFacade.getIaasConfiguration(iaasConfigurationName);
@@ -88,7 +94,10 @@ public class IaasManagerBean implements IIaasManager {
             iaasComputeVO.setName(computeName);
             iaasComputeVO.setState("RUNNING");
             iaasComputeVO.setIpAddress(nodeHandle.getIpAddress());
+
             iaasComputeVO.setHostname(nodeHandle.getName());
+            iaasComputeVO.setInternalId(nodeHandle.getId());
+
             iaasComputeVO.setConf(iaasConfigurationName);
             iaasComputeVO.setCapabilities(iaasConfiguration.getCapabilities());
             iaasComputeVO = iSrIaasComputeFacade.createIaasCompute(iaasComputeVO);
@@ -109,7 +118,13 @@ public class IaasManagerBean implements IIaasManager {
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void removeCompute(String computeName) throws IaasManagerException {
+
+        logger.info("computeName=" + computeName);
+
+
         List<IaasComputeVO> iaasComputeList = iSrIaasComputeFacade.findIaasComputes();
+        logger.info("iaasComputeList=" + iaasComputeList);
+
         String computeId = null;
         for (IaasComputeVO tmp : iaasComputeList) {
             if (tmp.getName().equals(computeName)) {
@@ -125,6 +140,8 @@ public class IaasManagerBean implements IIaasManager {
             nodeHandle.setName(computeName);
             nodeHandle.setIaasName(iaasComputeVO.getConf());
             nodeHandle.setIpAddress(iaasComputeVO.getIpAddress());
+
+            nodeHandle.setId(iaasComputeVO.getInternalId());
             try {
                 serviceInvoker.doOperation(OperationType.DELETE_NODE, nodeHandle.getName(), nodeHandle);
                 iSrIaasComputeFacade.deleteIaasCompute(computeId);
@@ -144,4 +161,5 @@ public class IaasManagerBean implements IIaasManager {
     public List<Integer> getPortRange(String computeName, int size) {
         return null;  //ToDo
     }
+
 }

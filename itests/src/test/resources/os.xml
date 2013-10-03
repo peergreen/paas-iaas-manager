@@ -1,0 +1,37 @@
+<!--
+    IaaS layers definition
+    -->
+<iaas-defs>
+  <iaas type="OSIAAS" name="os1" auto-start="false">
+
+      <keystoneUrl>http://10.197.180.50:5000/v2.0</keystoneUrl>
+
+      <!-- Project -->
+      <tenantName>OCW-PAAS</tenantName>
+
+      <!-- User -->
+      <keystoneUser>ocw-paas</keystoneUser>
+      <keystonePassword>ocw</keystonePassword>
+
+      <!-- Fedora17 x86_64 -->
+      <imageId>d8691e45-8ec0-41e5-be10-fd8e40075ae1</imageId>
+
+      <!-- m1.small -->
+      <flavorId>2</flavorId>
+
+      <securityGroup>default</securityGroup>
+
+
+      <!-- Sync/Async parameters for provisioning
+
+           Retry parameters are used to check state of the instance
+           during synchronous creation (waiting being active)
+           Period is expressed in ms
+           -->
+      <syncCreate>true</syncCreate>
+      <syncCreateMaxRetry>30</syncCreateMaxRetry>
+      <syncCreatePeriodRetry>1000</syncCreatePeriodRetry>
+
+  </iaas>
+
+</iaas-defs>

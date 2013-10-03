@@ -59,9 +59,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.ow2.jonas.jpaas.iaas-manager</groupId>
-      <artifactId>iaas-manager-core</artifactId>
-      <version>${project.version}</version>
+          <groupId>org.ow2.jonas.jpaas.iaas-manager.providers</groupId>
+          <artifactId>iaas-provider-api</artifactId>
+          <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.ow2.sirocco.vmm</groupId>

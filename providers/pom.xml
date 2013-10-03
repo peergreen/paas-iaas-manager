@@ -43,6 +43,9 @@
     </licenses>
 
     <modules>
+        <module>iaas-dummy</module>
+        <module>iaas-provider-api</module>
+        <module>iaas-openstack-woorea</module>
         <module>iaas-vmm</module>
     </modules>
 

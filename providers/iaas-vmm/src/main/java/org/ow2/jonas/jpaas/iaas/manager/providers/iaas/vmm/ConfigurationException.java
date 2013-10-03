@@ -19,7 +19,7 @@
 
 package org.ow2.jonas.jpaas.iaas.manager.providers.iaas.vmm;
 
-import org.ow2.jonas.jpaas.iaas.manager.api.IaasException;
+import org.ow2.jonas.jpaas.iaas.manager.providers.iaas.api.IaasException;
 
 public class ConfigurationException extends IaasException {
 

@@ -1,0 +1,4 @@
+DynamicImport-Package *
+Private-Package org.ow2.jonas.jpaas.iaas.manager.providers.iaas.openstack.woorea
+Import-Package: !sun.rmi.rmic,!javax.mail.internet,!com.sun.tools.javac,!sun.tools.javac,!gnu.gcj,!com.sun.tools.apt,!weblogic,!sun.misc,!com.sun.tools.javah.oldjavah,!org.apache.harmony.luni.util,!com.sun.tools.javah,!org.joda.convert,!sun.tools.native2ascii,!kaffe.util,!org.apache.env,*
+Embed-Dependency *;scope=!provided

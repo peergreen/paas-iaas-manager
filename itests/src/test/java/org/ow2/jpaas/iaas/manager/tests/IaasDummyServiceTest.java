@@ -50,22 +50,22 @@ public class IaasDummyServiceTest {
                 mavenBundle("org.ow2.jonas.jpaas.system-representation", "system-representation-vo").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.system-representation", "system-representation-api").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.catalog", "jpaas-catalog-api").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-mocks").version(Definitions.PROJECT_VERSION),
+                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-external-mocks").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.iaas-manager.providers", "iaas-provider-api").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.iaas-manager.providers", "iaas-dummy").version(Definitions.PROJECT_VERSION),
+                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-api").version(Definitions.PROJECT_VERSION),
+                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-core").version(Definitions.PROJECT_VERSION),
+
 
                 junitBundles());
     }
 
     @Test
     public void checkInjectContext() {
+
         assertNotNull(context);
     }
 
-    @Test
-    public void checkInjectIaasService() {
-        assertNotNull(iaasService);
-    }
 
     @Test
     public void checkBundleIaasService() {
@@ -86,6 +86,12 @@ public class IaasDummyServiceTest {
         assertTrue(active);
     }
 
+
+    @Test
+    public void checkInjectIaasService() {
+        assertNotNull(iaasService);
+    }
+
     @Test
     public void createNode() {
 
@@ -104,5 +110,4 @@ public class IaasDummyServiceTest {
         assertEquals(nodeHandle.getIpAddress(), "dummyipaddress");
 
     }
-
 }

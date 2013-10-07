@@ -50,9 +50,10 @@ public class IaasManagerOpenstackTest {
                 mavenBundle("org.ow2.jonas.jpaas.system-representation", "system-representation-vo").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.system-representation", "system-representation-api").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.catalog", "jpaas-catalog-api").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-mocks").version(Definitions.PROJECT_VERSION),
+                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-external-mocks").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.iaas-manager.providers", "iaas-provider-api").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.iaas-manager.providers", "iaas-openstack-woorea").version(Definitions.PROJECT_VERSION),
+                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-api").version(Definitions.PROJECT_VERSION),
                 mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-core").version(Definitions.PROJECT_VERSION),
                 junitBundles());
     }

@@ -58,9 +58,10 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git://gitorious.ow2.org/ow2-jasmine/jpaas-iaas-manager.git</connection>
-        <developerConnection>scm:git:git@gitorious.ow2.org:ow2-jasmine/jpaas-iaas-manager.git</developerConnection>
-        <url>http://gitorious.ow2.org/ow2-jasmine/jpaas-iaas-manager/trees/master</url>
+        <connection>scm:git:https://florent.benoit@forge.peergreen.com/git/git/jpaas/jpaas-iaas-manager.git</connection>
+        <developerConnection>scm:git:https://florent.benoit@forge.peergreen.com/git/git/jpaas/jpaas-iaas-manager.git</developerConnection>
+        <url>https://forge.peergreen.com/git/summary/?r=jpaas/jpaas-iaas-manager.git</url>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>

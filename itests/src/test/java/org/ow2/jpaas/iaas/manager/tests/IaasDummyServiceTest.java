@@ -47,14 +47,14 @@ public class IaasDummyServiceTest {
         root.setLevel(Level.INFO);
 
         return options(systemProperty("org.ops4j.pax.logging.DefaultServiceLog.level").value("WARN"),
-                mavenBundle("org.ow2.jonas.jpaas.system-representation", "system-representation-vo").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.system-representation", "system-representation-api").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.catalog", "jpaas-catalog-api").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-external-mocks").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.iaas-manager.providers", "iaas-provider-api").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.iaas-manager.providers", "iaas-dummy").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-api").version(Definitions.PROJECT_VERSION),
-                mavenBundle("org.ow2.jonas.jpaas.iaas-manager", "iaas-manager-core").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-system-representation-vo").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-system-representation-api").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-catalog-api").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-iaas-manager-external-mocks").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-iaas-manager-providers-api").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-iaas-manager-providers-dummy").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-iaas-manager-api").version(Definitions.PROJECT_VERSION),
+                mavenBundle("com.peergreen.paas", "paas-iaas-manager-core").version(Definitions.PROJECT_VERSION),
 
 
                 junitBundles());
@@ -74,7 +74,7 @@ public class IaasDummyServiceTest {
         Bundle[] bundles = context.getBundles();
         for (Bundle bundle : bundles) {
             if (bundle != null) {
-                if (bundle.getSymbolicName().equals("org.ow2.jonas.jpaas.iaas-manager.providers.iaas-provider-api")) {
+                if (bundle.getSymbolicName().equals("com.peergreen.paas.iaas-manager-providers-api")) {
                     found = true;
                     if (bundle.getState() == Bundle.ACTIVE) {
                         active = true;

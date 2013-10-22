@@ -1,6 +1,5 @@
 package org.ow2.jpaas.iaas.manager.mocks;
 
-import org.apache.felix.ipojo.*;
 import org.apache.felix.ipojo.annotations.*;
 import org.ow2.jonas.jpaas.sr.facade.api.ISrIaasComputeFacade;
 import org.ow2.jonas.jpaas.sr.facade.vo.IaasComputeVO;
